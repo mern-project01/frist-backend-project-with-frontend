@@ -1,25 +1,34 @@
 
+import { useEffect } from 'react';
 import './App.css'
+import { useState } from 'react';
 
 function App() {
+  const [users,setUsers]=useState([])
+  useEffect(() => {
+    fetch("http://localhost:3000/user")
+      .then(res => res.json())
+    .then(data=>setUsers(data))
+  },[])
 
   return (
     <>
-      <h1 className="text-8xl text-red-600">Hello devoloper</h1>
-      <div className="card bg-base-100 w-96 shadow-xl">
-        <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+      <h1 className="text-8xl text-red-600">users length:{users.length} </h1>
+      <div className="grid grid-cols-3 gap-2">
+        {users.map((user) => (
+          <div>
+            <div className="card bg-neutral text-neutral-content ">
+              <div className="card-body items-center text-center">
+                <h2 className="card-title">{user.name} </h2>
+                <p>{ user?.description}</p>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">{user?.profesion}</button>
+                  <button className="btn btn-ghost">{user.age} </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </>
   );

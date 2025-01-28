@@ -1,6 +1,10 @@
 const express = require('express')
 const app = express()
 const port = 3000
+// cors for solving cors policy
+const cors = require('cors')
+// use cors
+app.use(cors())
 app.get('/', (req, res) => {
     res.send("Frist express app")
 })
