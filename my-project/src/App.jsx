@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-8xl">Hello devoloper</h1>
+      <h1 className="text-8xl text-red-600">Hello devoloper</h1>
       <div className="card bg-base-100 w-96 shadow-xl">
         <figure>
           <img
