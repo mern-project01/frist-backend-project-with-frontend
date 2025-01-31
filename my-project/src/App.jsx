@@ -4,12 +4,11 @@ import { useState } from "react";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [data,setData]= useState()
   useEffect(() => {
-    fetch("http://localhost:3000/user")
+    fetch("http://localhost:3000/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
-  }, [user]);
+  }, [users]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +22,7 @@ function App() {
       email,
     };
     // alert(user.email)
-    fetch("http://localhost:3000/user", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
@@ -36,26 +35,23 @@ function App() {
           alert(body.message); // Alert "Already have an account"
         } else {
           setUsers([...users, body.user]); // Correctly update the users list
-          setData(body.message); // Store the success message
-          console.log(body)
+          console.log(body);
           alert("User added successfully");
         }
       })
       .catch((error) => console.log(error));
-      
+
     //const sameUser = users.some((user) => user.email === email)
-    
-    
-    
+
     // if (!sameUser) {
-      //   .then((res) => res.json())
+    //   .then((res) => res.json())
     //   .then((data) => {
     //     setUsers(...users, data)
     //     setData(data.message)
     //   })
     //   .catch((error) => console.log(error));
     // console.log(data);
-    
+
     // alert("ok.Done");
     // } else {
     //   alert("you alrady have a acount");
